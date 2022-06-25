@@ -41,9 +41,9 @@ module.exports.signIn = async (req, res) => {
             user: user._id,
         });
     } catch (err) {
-        res.status(500).json({
-            message: 'Internal server error',
-        });
+        // on recupere les erreurs de l'utilisateur
+        const errors = signInErrors(err);
+        res.status(200).send({ errors });
     }
 };
 
