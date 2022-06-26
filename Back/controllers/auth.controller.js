@@ -22,7 +22,7 @@ module.exports.signUp = async (req, res) => {
     } catch (err) {
         // on recupere les erreurs de l'utilisateur
         const errors = signUpErrors(err);
-        res.status(200).send({ errors });
+        res.status(400).send({ errors });
     }
 };
 
@@ -43,7 +43,7 @@ module.exports.signIn = async (req, res) => {
     } catch (err) {
         // on recupere les erreurs de l'utilisateur
         const errors = signInErrors(err);
-        res.status(200).send({ errors });
+        res.status(400).send({ errors });
     }
 };
 
