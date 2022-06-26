@@ -1,21 +1,34 @@
 // import mongoose
 const mongoose = require('mongoose');
-// import de l' userSchema
 const userSchema = require('./user.models');
 
 //comments schema
 const commentSchema = new mongoose.Schema({
     content: String,
     createdAt: String,
-    score: Number,
-    commenterInfo: userSchema,
+    score: {
+        type: [Number],
+        default: 0,
+    },
+    commenterId: {
+        type: String,
+        ref: 'User',
+        required: true,
+    },
     replies: [
         {
             content: String,
             createdAt: String,
-            score: Number,
+            score: {
+                type: [Number],
+                default: 0,
+            },
             replyingTo: String,
-            commenterInfo: userSchema,
+            commenterId: {
+                type: String,
+                ref: 'User',
+                required: true,
+            },
             replyToOtherReply: String,
             mainCommentId: String,
         },
